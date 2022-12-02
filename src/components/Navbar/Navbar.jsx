@@ -1,5 +1,4 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
 import s from './Navbar.module.css';
 import { CustomLink } from '../CustomLink.jsx/CustomLink';
 
@@ -13,6 +12,9 @@ const Navbar = () => {
             </div>
             <div className={s.item}>
                 <CustomLink to="/dialogs">Messages</CustomLink>
+            </div>
+            <div className={s.item}>
+                <CustomLink to="/users">Users</CustomLink>
             </div>
             <div className={s.item}>
                 <CustomLink to="/news">News</CustomLink>
