@@ -2,17 +2,17 @@ import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
-
+import usersAPI from "../../api/api";
 
 let Users = (props) => {
 
-    let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize);
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-        let pages = [];
-        for (let i=1; i <= pagesCount; i++) {
-        if (pages.length < 20) 
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        if (pages.length < 20)
             pages.push(i);
-        }
+    }
 
     return <div>
         <div>
@@ -27,14 +27,21 @@ let Users = (props) => {
                 <span>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                        <img src={u.photos.small != null ? u.photos.small : userPhoto}
-                         className={styles.userPhoto} alt="" />
-                         </NavLink>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto}
+                                className={styles.userPhoto} alt="" />
+                        </NavLink>
                     </div>
                     <div>
+                       
                         {u.followed
-                            ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
-                            : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
+                            ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                onClick={() => {props.unfollow(true, u.id)
+                                    debugger;
+                                }}>Unfollow</button>
+
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                onClick={() => {props.follow(true, u.id)
+                                }}>Follow</button>}
                     </div>
                 </span>
                 <span>
