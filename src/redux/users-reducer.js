@@ -14,7 +14,7 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false,
+    isFetching: true,
     followingInProgress: []
 };
 
@@ -26,7 +26,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userID) {
+                    if (u.id === action.userId) {
                         return { ...u, followed: true }
                     }
                     return u;
@@ -37,7 +37,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userID) {
+                    if (u.id === action.userId) {
                         return { ...u, followed: false }
                     }
                     return u;
@@ -61,7 +61,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id !== action.userId)
+                    : state.followingInProgress.filter(id => id != action.userId)
             }
         }
         default:

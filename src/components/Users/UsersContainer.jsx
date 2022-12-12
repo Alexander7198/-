@@ -11,6 +11,7 @@ import Preloader from "../common/Preloader/Preloader";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
+        
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
@@ -22,6 +23,7 @@ class UsersContainer extends React.Component {
 
         return <>
             {this.props.isFetching ? <Preloader /> : null}
+            
             <Users totalUsersCount={this.props.totalUsersCount}
                 pageSize={this.props.pageSize}
                 currentPage={this.props.currentPage}
