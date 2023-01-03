@@ -4,10 +4,10 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
+import ProfileContainer, { withRouter } from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
 import { Component } from 'react';
@@ -29,7 +29,6 @@ class App extends Component {
       return <Preloader />
     }
     return (
-      <BrowserRouter>
         <div className='app-wrapper'>
           <HeaderContainer />
           <Navbar />
@@ -45,11 +44,9 @@ class App extends Component {
               <Route path='/news' element={<News />} />
               <Route path='/music' element={<Music />} />
               <Route path='/settings' element={<Settings />} />
-
             </Routes>
           </div>
         </div>
-      </BrowserRouter>
     );
   }
 }
@@ -59,14 +56,15 @@ const mapStateToProps = (state) => ({
 })
 
 let AppContainer = compose(
+  withRouter,
   connect(mapStateToProps, { initializeApp }))(App);
 
 const SamuraiJSApp = (props) => {
-  return <React.StrictMode>
+  return <HashRouter >
     <Provider store={store}>
       <AppContainer />
     </Provider>
-  </React.StrictMode>
+  </HashRouter>
 }
 
 export default SamuraiJSApp;
