@@ -2,6 +2,6 @@
 ==================================================
 Описание проекта:
 --------------------------------------------------
-##### Проект сделан на основе фрейворка React и Java Script
+#### Проект сделан на основе фрейворка React и Java Script
 ####
-#####  GitHub Pages: https://alexander7198.github.io/--Social-network/
+####  GitHub Pages: https://alexander7198.github.io/--Social-network/
